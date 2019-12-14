@@ -3,7 +3,7 @@ This is a template for for a REST API application with  ObjectScript using Docke
 The template goes also with a few files which let you immedietly compile your ObjecScript files in InterSystems IRIS Community Edition in a docker container
 
 ## Prerequisites
-This needs to have git and docker installed.
+This needs to have git and docker installed. 
 
 ## Installation 
 
