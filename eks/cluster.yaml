@@ -1,0 +1,42 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: dev-cluster
+  region: eu-west-1
+  version: '1.14'
+
+vpc:
+  cidr: 10.42.0.0/16
+  nat:
+    gateway: Single
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: false
+
+nodeGroups:
+- name: ng-1
+  amiFamily: AmazonLinux2
+  ami: ami-059c6874350e63ca9
+  instanceType: t2.medium
+  desiredCapacity: 1
+  minSize: 1
+  maxSize: 1
+
+  # Worker nodes won't have an access FROM the Internet
+  # But have an access TO the Internet through NAT-gateway
+  privateNetworking: true
+
+  # We don't need to SSH to nodes for demo
+  ssh:
+    allow: false
+
+  # Labels are Kubernetes labels, shown when 'kubectl get nodes --show-labels'
+  labels:
+    role: eks-demo
+  # Tags are AWS tags, shown in 'Tags' tab on AWS console'
+  tags:
+    role: eks-demo
+
+  # Disabled CloudWatch logging is disabled by default to save money
+  # Mentioned here just to show a way to manage it
+  
