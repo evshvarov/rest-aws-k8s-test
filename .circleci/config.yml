@@ -66,10 +66,10 @@ workflows:
          dockerfile: Dockerfile-zpm
          path: .
          tag: ${CIRCLE_SHA1}
-     - deploy-application:
-         cluster-name: dev-cluster
-         aws-region: eu-west-1
-         account-url: ${AWS_ECR_ACCOUNT_URL}
-         tag: ${CIRCLE_SHA1}
-         requires:
-           - aws-ecr/build-and-push-image
+    - deploy-application:
+        cluster-name: dev-cluster
+        aws-region: eu-west-1
+        account-url: ${AWS_ECR_ACCOUNT_URL}
+        tag: ${CIRCLE_SHA1}
+        requires:
+            - aws-ecr/build-and-push-image
